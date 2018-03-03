@@ -1,0 +1,17 @@
+{
+	"profile": {
+		"name":"Giri Rahayu",
+		"email":"info@girirahayu.com",
+		"linkedin":"https://www.linkedin.com/in/girirahayu/",
+		"facebook":"https://www.facebook.com/newbiemember"
+	},
+	"skill": [
+			"Programming",
+			"Networking",
+			"OSS"
+		],
+	"experience": {
+		"clue": "More than 11 years working in technology company",
+		"present position": "IT Operational Manager"
+	} 
+}
