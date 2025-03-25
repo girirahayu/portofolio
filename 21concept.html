@@ -69,7 +69,7 @@
 
     let hpp_tanpa_diskon = ((hargaPrint * (panjangDesign / 100)) + hargaKaos + jasaSablon + jasaDesign) * jumlahKaos;
     let hpp = hpp_tanpa_diskon - (hpp_tanpa_diskon * ( diskon / 100));
-    let hargaJual = hpp + (hpp - (hpp * (100-margin)/100));
+    let hargaJual = hpp / (100-margin)*100;
 
     document.getElementById('hpp').textContent = formatRupiah(hpp.toFixed(2));
     document.getElementById('harga_jual').textContent = formatRupiah(hargaJual.toFixed(2));
