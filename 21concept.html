@@ -6,53 +6,95 @@
   <title>Form Input Harga</title>
   <script src="https://cdn.tailwindcss.com"></script>
 </head>
-<body class="bg-gray-100 flex items-center justify-center min-h-screen">
-<div class="bg-white p-6 rounded-lg shadow-md w-full max-w-md">
+<body class="bg-gray-100 flex items-center justify-center min-h-screen p-4">
+<div class="bg-white p-6 rounded-lg shadow-md w-full max-w-lg">
   <h2 class="text-xl font-semibold mb-4 text-center">Form Input Harga</h2>
-  <form action="#" method="POST" class="space-y-4" oninput="hitungTotal()">
+
+  <!-- Harga Kaos Lengan Pendek -->
+  <div class="border p-3 rounded-lg mb-4">
+    <h3 class="text-lg font-semibold">Harga Kaos Lengan Pendek</h3>
+    <div class="grid gap-2 mt-2">
+      <script>
+        const sizes = ["S", "M", "L", "XL", "XXL", "XXXL"];
+        document.write(sizes.map(size => `
+            <div class="border p-2 rounded-lg">
+              <label class="text-sm font-semibold">Size ${size}</label>
+              <div class="grid grid-cols-2 gap-2 mt-1">
+                <div>
+                  <label class="text-xs font-medium">Harga</label>
+                  <input type="number" id="harga_pendek_${size}" class="p-2 border rounded-lg w-full" placeholder="Harga" value="0">
+                </div>
+                <div>
+                  <label class="text-xs font-medium">Qty</label>
+                  <input type="number" id="qty_pendek_${size}" class="p-2 border rounded-lg w-full" placeholder="Qty" value="0">
+                </div>
+              </div>
+            </div>
+          `).join(''));
+      </script>
+    </div>
+  </div>
+
+  <!-- Harga Kaos Lengan Panjang -->
+  <div class="border p-3 rounded-lg mb-4">
+    <h3 class="text-lg font-semibold">Harga Kaos Lengan Panjang</h3>
+    <div class="grid gap-2 mt-2">
+      <script>
+        document.write(sizes.map(size => `
+            <div class="border p-2 rounded-lg">
+              <label class="text-sm font-semibold">Size ${size}</label>
+              <div class="grid grid-cols-2 gap-2 mt-1">
+                <div>
+                  <label class="text-xs font-medium">Harga</label>
+                  <input type="number" id="harga_panjang_${size}" class="p-2 border rounded-lg w-full" placeholder="Harga" value="0">
+                </div>
+                <div>
+                  <label class="text-xs font-medium">Qty</label>
+                  <input type="number" id="qty_panjang_${size}" class="p-2 border rounded-lg w-full" placeholder="Qty" value="0">
+                </div>
+              </div>
+            </div>
+          `).join(''));
+      </script>
+    </div>
+  </div>
+
+  <!-- Input Lainnya -->
+  <div class="space-y-3">
     <div>
       <label class="block text-sm font-medium" for="harga_print">Harga Print / Meter</label>
-      <input type="number" id="harga_print" name="harga_print" class="mt-1 p-2 w-full border rounded-lg" value="0">
-    </div>
-    <div>
-      <label class="block text-sm font-medium" for="harga_kaos">Harga Kaos</label>
-      <input type="number" id="harga_kaos" name="harga_kaos" class="mt-1 p-2 w-full border rounded-lg" value="0">
+      <input type="number" id="harga_print" class="mt-1 p-2 w-full border rounded-lg" value="0">
     </div>
     <div>
       <label class="block text-sm font-medium" for="jasa_sablon">Jasa Sablon</label>
-      <input type="number" id="jasa_sablon" name="jasa_sablon" class="mt-1 p-2 w-full border rounded-lg" value="2000">
+      <input type="number" id="jasa_sablon" class="mt-1 p-2 w-full border rounded-lg" value="2000">
     </div>
     <div>
       <label class="block text-sm font-medium" for="jasa_design">Jasa Design</label>
-      <input type="number" id="jasa_design" name="jasa_design" class="mt-1 p-2 w-full border rounded-lg" value="5000">
-    </div>
-    <div>
-      <label class="block text-sm font-medium" for="panjang_design">Panjang Design (Cm)</label>
-      <input type="number" id="panjang_design" name="panjang_design" class="mt-1 p-2 w-full border rounded-lg" value="0">
-    </div>
-    <div>
-      <label class="block text-sm font-medium" for="jumlah_kaos">Jumlah Kaos</label>
-      <input type="number" id="jumlah_kaos" name="jumlah_kaos" class="mt-1 p-2 w-full border rounded-lg" value="1">
+      <input type="number" id="jasa_design" class="mt-1 p-2 w-full border rounded-lg" value="5000">
     </div>
     <div>
       <label class="block text-sm font-medium" for="margin">Margin (%)</label>
-      <input type="number" id="margin" name="margin" class="mt-1 p-2 w-full border rounded-lg" value="25">
+      <input type="number" id="margin" class="mt-1 p-2 w-full border rounded-lg" value="25">
     </div>
     <div>
       <label class="block text-sm font-medium" for="diskon">Diskon (%)</label>
-      <input type="number" id="diskon" name="diskon" class="mt-1 p-2 w-full border rounded-lg" value="0">
+      <input type="number" id="diskon" class="mt-1 p-2 w-full border rounded-lg" value="0">
     </div>
-    <div class="mt-4 text-center font-semibold text-lg">
-      HPP: Rp. <span id="hpp">0</span>
-    </div>
-    <div class="mt-2 text-center font-semibold text-lg">
-      Harga Jual: Rp. <span id="harga_jual">0</span>
-    </div>
-  </form>
+  </div>
+
+  <!-- Output Harga -->
+  <div class="mt-4 text-center font-semibold text-lg">
+    HPP: Rp. <span id="hpp">0</span>
+  </div>
+  <div class="mt-2 text-center font-semibold text-lg">
+    Harga Jual: Rp. <span id="harga_jual">0</span>
+  </div>
 </div>
+
 <script>
   function formatRupiah(angka) {
-    return angka.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".").replace(/\.00$/, "");
+    return angka.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
   }
 
   function roundToNearestThousand(value) {
@@ -60,33 +102,43 @@
   }
 
   function hitungTotal() {
-    let hargaPrint = document.getElementById('harga_print').value.trim();
-    let hargaKaos = document.getElementById('harga_kaos').value.trim();
-    let jasaSablon = document.getElementById('jasa_sablon').value.trim();
-    let jasaDesign = document.getElementById('jasa_design').value.trim();
-    let panjangDesign = document.getElementById('panjang_design').value.trim();
-    let jumlahKaos = document.getElementById('jumlah_kaos').value.trim();
-    let margin = document.getElementById('margin').value.trim();
-    let diskon = document.getElementById('diskon').value.trim();
+    let hargaPrint = parseFloat(document.getElementById('harga_print').value);
+    let jasaSablon = parseFloat(document.getElementById('jasa_sablon').value);
+    let jasaDesign = parseFloat(document.getElementById('jasa_design').value);
+    let margin = parseFloat(document.getElementById('margin').value);
+    let diskon = parseFloat(document.getElementById('diskon').value);
 
-    // Gunakan nilai default hanya jika input kosong, bukan ketika 0 valid
-    hargaPrint = hargaPrint === "" ? 0 : parseFloat(hargaPrint);
-    hargaKaos = hargaKaos === "" ? 0 : parseFloat(hargaKaos);
-    jasaSablon = jasaSablon === "" ? 2000 : parseFloat(jasaSablon);
-    jasaDesign = jasaDesign === "" ? 5000 : parseFloat(jasaDesign);
-    panjangDesign = panjangDesign === "" ? 0 : parseFloat(panjangDesign);
-    jumlahKaos = jumlahKaos === "" ? 1 : parseFloat(jumlahKaos);
-    margin = margin === "" ? 25 : parseFloat(margin);
-    diskon = diskon === "" ? 0 : parseFloat(diskon);
+    let hpp = jasaDesign; // Inisialisasi HPP
 
-    let hpp_tanpa_diskon = jasaDesign + ((hargaPrint * (panjangDesign / 100)) + (hargaKaos * jumlahKaos) + (jasaSablon * jumlahKaos));
-    let hpp = hpp_tanpa_diskon - (hpp_tanpa_diskon * (diskon / 100));
-    let hargaJual = hpp / (100 - margin) * 100;
+    // Looping semua ukuran untuk kaos lengan pendek
+    sizes.forEach(size => {
+      let harga = parseFloat(document.getElementById(`harga_pendek_${size}`).value) || 0;
+      let qty = parseFloat(document.getElementById(`qty_pendek_${size}`).value) || 0;
+      hpp += (harga * qty) + (jasaSablon * qty);
+    });
+
+    // Looping semua ukuran untuk kaos lengan panjang
+    sizes.forEach(size => {
+      let harga = parseFloat(document.getElementById(`harga_panjang_${size}`).value) || 0;
+      let qty = parseFloat(document.getElementById(`qty_panjang_${size}`).value) || 0;
+      hpp += (harga * qty) + (jasaSablon * qty);
+    });
+
+    // Hitung diskon
+    let hppSetelahDiskon = hpp - (hpp * (diskon / 100));
+
+    // Hitung Harga Jual
+    let hargaJual = hppSetelahDiskon / (100 - margin) * 100;
     hargaJual = roundToNearestThousand(hargaJual);
 
-    document.getElementById('hpp').textContent = formatRupiah(hpp.toFixed(0));
-    document.getElementById('harga_jual').textContent = formatRupiah(hargaJual.toFixed(0));
+    document.getElementById('hpp').textContent = formatRupiah(hppSetelahDiskon.toFixed(2));
+    document.getElementById('harga_jual').textContent = formatRupiah(hargaJual.toFixed(2));
   }
+
+  // Event listener agar otomatis menghitung total saat input berubah
+  document.querySelectorAll('input').forEach(input => {
+    input.addEventListener('input', hitungTotal);
+  });
 </script>
 </body>
 </html>
