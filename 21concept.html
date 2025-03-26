@@ -5,104 +5,89 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Form Input Harga</title>
   <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    @media print {
+      .no-print {
+        display: none;
+      }
+      body {
+        margin: 0;
+        padding: 0;
+        display: block;
+      }
+
+      #invoice {
+        position: absolute;
+        top: 40px;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 100%;
+        max-width: 700px; /* Sesuaikan ukuran invoice */
+      }
+    }
+  </style>
 </head>
 <body class="bg-gray-100 flex items-center justify-center min-h-screen p-2">
 <div class="bg-white p-4 rounded-lg shadow-md w-full max-w-lg" id="calculator">
   <h2 class="text-lg font-semibold mb-2 text-center">Form Input Harga</h2>
-
   <div class="grid grid-cols-2 gap-2">
-    <!-- Harga Kaos Lengan Pendek -->
     <div class="border p-2 rounded-lg">
-      <h3 class="text-md font-semibold">Harga Kaos Lengan Pendek</h3>
-      <div class="grid gap-1 mt-1">
-        <script>
-          const sizes = ["S", "M", "L", "XL", "XXL", "XXXL"];
-          document.write(sizes.map(size => `
-              <div class="border p-1 rounded-lg">
-                <label class="text-xs font-semibold">Size ${size}</label>
-                <div class="grid grid-cols-2 gap-1 mt-1">
-                  <div>
-                    <label class="text-xs font-medium">Harga</label>
-                    <input type="number" id="harga_pendek_${size}" class="p-1 border rounded-lg w-full" placeholder="Harga" value="0">
-                  </div>
-                  <div>
-                    <label class="text-xs font-medium">Qty</label>
-                    <input type="number" id="qty_pendek_${size}" class="p-1 border rounded-lg w-full" placeholder="Qty" value="0">
-                  </div>
-                </div>
-              </div>
-            `).join(''));
-        </script>
-      </div>
+      <h3 class="text-md font-semibold">Kaos Lengan Pendek</h3>
+      <div id="pendek_sizes"></div>
     </div>
-
-    <!-- Harga Kaos Lengan Panjang -->
     <div class="border p-2 rounded-lg">
-      <h3 class="text-md font-semibold">Harga Kaos Lengan Panjang</h3>
-      <div class="grid gap-1 mt-1">
-        <script>
-          document.write(sizes.map(size => `
-              <div class="border p-1 rounded-lg">
-                <label class="text-xs font-semibold">Size ${size}</label>
-                <div class="grid grid-cols-2 gap-1 mt-1">
-                  <div>
-                    <label class="text-xs font-medium">Harga</label>
-                    <input type="number" id="harga_panjang_${size}" class="p-1 border rounded-lg w-full" placeholder="Harga" value="0">
-                  </div>
-                  <div>
-                    <label class="text-xs font-medium">Qty</label>
-                    <input type="number" id="qty_panjang_${size}" class="p-1 border rounded-lg w-full" placeholder="Qty" value="0">
-                  </div>
-                </div>
-              </div>
-            `).join(''));
-        </script>
-      </div>
+      <h3 class="text-md font-semibold">Kaos Lengan Panjang</h3>
+      <div id="panjang_sizes"></div>
     </div>
   </div>
-
-  <!-- Input Lainnya -->
-  <div class="space-y-2 mt-2">
-    <div>
-      <label class="block text-xs font-medium" for="harga_print">Harga Print / Meter</label>
-      <input type="number" id="harga_print" class="mt-1 p-1 w-full border rounded-lg" value="0">
-    </div>
-    <div>
-      <label class="block text-xs font-medium" for="harga_print">Panjang Design ( Cm )</label>
-      <input type="number" id="panjang_design" class="mt-1 p-1 w-full border rounded-lg" value="0">
-    </div>
-    <div>
-      <label class="block text-xs font-medium" for="jasa_sablon">Jasa Sablon</label>
-      <input type="number" id="jasa_sablon" class="mt-1 p-1 w-full border rounded-lg" value="2000">
-    </div>
-    <div>
-      <label class="block text-xs font-medium" for="jasa_design">Jasa Design</label>
-      <input type="number" id="jasa_design" class="mt-1 p-1 w-full border rounded-lg" value="5000">
-    </div>
-    <div>
-      <label class="block text-xs font-medium" for="margin">Margin (%)</label>
-      <input type="number" id="margin" class="mt-1 p-1 w-full border rounded-lg" value="25">
-    </div>
-    <div>
-      <label class="block text-xs font-medium" for="diskon">Diskon (%)</label>
-      <input type="number" id="diskon" class="mt-1 p-1 w-full border rounded-lg" value="0">
-    </div>
+  <div class="mt-4">
+    <label>Nama Pelanggan:</label>
+    <input type="text" id="input_nama_pelanggan" class="p-1 border rounded-lg w-full" placeholder="Masukkan Nama Pelanggan">
+    <label>Harga Print / Meter:</label>
+    <input type="number" id="harga_print" class="p-1 border rounded-lg w-full" value="0">
+    <label>Panjang Design (Cm):</label>
+    <input type="number" id="panjang_design" class="p-1 border rounded-lg w-full" value="0">
+    <label>Jasa Sablon:</label>
+    <input type="number" id="jasa_sablon" class="p-1 border rounded-lg w-full" value="2000">
+    <label>Jasa Design:</label>
+    <input type="number" id="jasa_design" class="p-1 border rounded-lg w-full" value="5000">
+    <label>Margin (%):</label>
+    <input type="number" id="margin" class="p-1 border rounded-lg w-full" value="25">
+    <label>Diskon (%):</label>
+    <input type="number" id="diskon" class="p-1 border rounded-lg w-full" value="0">
   </div>
-
-  <!-- Output Harga -->
-  <div class="mt-2 text-center font-semibold text-md">
-    HPP: Rp. <span id="hpp">0</span>
+  <div class="mt-4">
+    <table class="w-full border-collapse border border-gray-300 text-sm">
+      <thead>
+      <tr class="bg-gray-200">
+        <th class="border p-2 text-center">Keterangan</th>
+        <th class="border p-2 text-center">HPP (Rp)</th>
+        <th class="border p-2 text-center">Harga Jual (Rp)</th>
+      </tr>
+      </thead>
+      <tbody id="hpp_table"></tbody>
+      <tfoot>
+      <tr>
+        <td class="border p-2 text-center font-semibold">Total Harga Jual</td>
+        <td colspan="2" class="border p-2 text-center font-semibold">Rp. <span id="total_harga_jual">0</span></td>
+      </tr>
+      </tfoot>
+    </table>
   </div>
-  <div class="mt-1 text-center font-semibold text-md">
-    Total Harga: Rp. <span id="harga_jual">0</span>
-  </div>
-  <button onclick="generateInvoice()" class="mt-4 bg-blue-500 text-white px-4 py-2 rounded-lg w-full">Buat Invoice</button>
+  <button onclick="generateInvoice()" class="mt-4 bg-blue-500 text-white px-4 py-2 rounded-lg w-full no-print">Buat Invoice</button>
 </div>
 
 <div class="bg-white p-6 rounded-lg shadow-md w-full max-w-2xl hidden" id="invoice">
-  <div class="text-right">
-    <h2 class="text-xl font-bold">INVOICE</h2>
-    <p class="text-sm text-gray-600">Tanggal: <span id="tanggal_invoice"></span></p>
+  <div class="flex justify-between items-center">
+    <div>
+      <img src="https://raw.githubusercontent.com/girirahayu/portofolio/refs/heads/master/21concept.jpeg" alt="Logo" class="w-48">
+      <p class="text-gray-700 text-xs">Jl. Hanoman No. 06 Bumi Resik Panglayungan Kota Tasikmalaya</p>
+      <p class="text-gray-700 text-xs">No. Hp/Whatsapp : 0853-1705-0607</p>
+    </div>
+    <div class="text-right">
+      <h2 class="text-xl font-bold">INVOICE</h2>
+      <p class="text-sm text-gray-600">Tanggal: <span id="tanggal_invoice"></span></p>
+    </div>
   </div>
   <div class="mt-4">
     <h3 class="text-lg font-semibold">Kepada:</h3>
@@ -113,8 +98,7 @@
       <thead>
       <tr class="bg-gray-200">
         <th class="border p-2">Deskripsi</th>
-        <th class="border p-2 text-center">Qty</th>
-        <th class="border p-2 text-right">Harga Satuan</th>
+        <th class="border p-2 text-center">Qty</        <th class="border p-2 text-right">Harga Satuan</th>
         <th class="border p-2 text-right">Subtotal</th>
       </tr>
       </thead>
@@ -127,10 +111,31 @@
       </tfoot>
     </table>
   </div>
-  <button onclick="printInvoice()" class="mt-4 bg-green-500 text-white px-4 py-2 rounded-lg w-full">Print Invoice</button>
+  <div class="mt-4">
+    <h3 class="text-lg font-semibold">Informasi Pembayaran:</h3>
+    <p class="text-gray-700">BCA : 054 254 7926</p>
+    <p class="text-gray-700">BRI : 4380 0100 0428 501</p>
+    <p class="text-gray-700">Atas Nama: Nuki Ibrahim</p>
+  </div>
+  <button onclick="printInvoice()" class="mt-4 bg-green-500 text-white px-4 py-2 rounded-lg w-full no-print">Print Invoice</button>
 </div>
 
 <script>
+  const sizes = ["S", "M", "L", "XL", "XXL", "XXXL"];
+  function generateSizeInputs(type) {
+    return sizes.map(size => `
+      <div class="border p-1 rounded-lg">
+        <label class="text-xs font-semibold">Size ${size}</label>
+        <div class="grid grid-cols-2 gap-1 mt-1">
+          <input type="number" id="harga_${type}_${size}" placeholder="Harga" class="p-1 border rounded-lg w-full" value="0">
+          <input type="number" id="qty_${type}_${size}" placeholder="Qty" class="p-1 border rounded-lg w-full" value="0">
+        </div>
+      </div>
+    `).join('');
+  }
+  document.getElementById("pendek_sizes").innerHTML = generateSizeInputs("pendek");
+  document.getElementById("panjang_sizes").innerHTML = generateSizeInputs("panjang");
+
   function formatRupiah(angka) {
     return angka.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".").replace(/\.00$/, "");
   }
@@ -140,104 +145,94 @@
   }
 
   function hitungTotal() {
-    let hargaPrint = parseFloat(document.getElementById('harga_print').value);
-    let panjangDesign = parseFloat(document.getElementById('panjang_design').value)
+    let totalHargaJual = 0;
+    let tbody = document.getElementById("hpp_table");
+    tbody.innerHTML = "";
+    sizes.forEach(size => {
+      let qtyPendek = parseFloat(document.getElementById(`qty_pendek_${size}`).value) || 0;
+      let qtyPanjang = parseFloat(document.getElementById(`qty_panjang_${size}`).value) || 0;
+      if (qtyPendek > 0) {
+        let hppPendek = hitungHPP("pendek", size);
+        let hargaJualPendek = hitungHargaJual(hppPendek);
+        totalHargaJual += hargaJualPendek;
+        tbody.innerHTML += `
+          <tr>
+            <td class="border p-2 text-center">Kaos Lengan Pendek Size ${size}</td>
+            <td class="border p-2 text-center">Rp. ${formatRupiah(hppPendek)}</td>
+            <td class="border p-2 text-center">Rp. ${formatRupiah(hargaJualPendek)}</td>
+          </tr>`;
+      }
+      if (qtyPanjang > 0) {
+        let hppPanjang = hitungHPP("panjang", size);
+        let hargaJualPanjang = hitungHargaJual(hppPanjang);
+        totalHargaJual += hargaJualPanjang;
+        tbody.innerHTML += `
+          <tr>
+            <td class="border p-2 text-center">Kaos Lengan Panjang Size ${size}</td>
+            <td class="border p-2 text-center">Rp. ${formatRupiah(hppPanjang)}</td>
+            <td class="border p-2 text-center">Rp. ${formatRupiah(hargaJualPanjang)}</td>
+          </tr>`;
+      }
+    });
+    document.getElementById("total_harga_jual").textContent = formatRupiah(totalHargaJual);
+  }
+
+  function hitungHPP(type, size) {
+    let harga = parseFloat(document.getElementById(`harga_${type}_${size}`).value) || 0;
+    let qty = parseFloat(document.getElementById(`qty_${type}_${size}`).value) || 0;
     let jasaSablon = parseFloat(document.getElementById('jasa_sablon').value);
+    let hargaPrint = parseFloat(document.getElementById('harga_print').value);
+    let panjangDesign = parseFloat(document.getElementById('panjang_design').value);
     let jasaDesign = parseFloat(document.getElementById('jasa_design').value);
+    return (harga * qty) + (jasaSablon * qty) + ((hargaPrint * panjangDesign / 100) * qty) + jasaDesign;
+  }
+
+  function hitungHargaJual(hpp) {
     let margin = parseFloat(document.getElementById('margin').value);
-    let diskon = parseFloat(document.getElementById('diskon').value);
-
-    let hpp = jasaDesign; // Inisialisasi HPP
-
-    // Looping semua ukuran untuk kaos lengan pendek
-    sizes.forEach(size => {
-      let harga = parseFloat(document.getElementById(`harga_pendek_${size}`).value) || 0;
-      let qty = parseFloat(document.getElementById(`qty_pendek_${size}`).value) || 0;
-      hpp += (harga * qty) + (jasaSablon * qty) + ((hargaPrint * panjangDesign/100)*qty);
-    });
-
-    // Looping semua ukuran untuk kaos lengan panjang
-    sizes.forEach(size => {
-      let harga = parseFloat(document.getElementById(`harga_panjang_${size}`).value) || 0;
-      let qty = parseFloat(document.getElementById(`qty_panjang_${size}`).value) || 0;
-      hpp += (harga * qty) + (jasaSablon * qty) + ((hargaPrint * panjangDesign/100)*qty);
-    });
-
-    // hpp += hargaPrint * panjangDesign/100;
-    // Hitung diskon
-    let hppSetelahDiskon = hpp - (hpp * (diskon / 100));
-
-    // Hitung Harga Jual
-    let hargaJual = hppSetelahDiskon / (100 - margin) * 100;
-    hargaJual = roundToNearestThousand(hargaJual);
-
-    document.getElementById('hpp').textContent = formatRupiah(hppSetelahDiskon.toFixed(2));
-    document.getElementById('harga_jual').textContent = formatRupiah(hargaJual.toFixed(2));
+    let hargaJual = hpp / (100 - margin) * 100;
+    return roundToNearestThousand(hargaJual);
   }
 
   function generateInvoice() {
     document.getElementById("tanggal_invoice").textContent = new Date().toLocaleDateString("id-ID");
+    let namaPelanggan = document.getElementById("input_nama_pelanggan").value;
+    document.getElementById("nama_pelanggan").textContent = namaPelanggan;
     let tbody = document.getElementById("invoice_items");
     tbody.innerHTML = "";
-    let totalHarga = parseFloat(document.getElementById('harga_jual').textContent.replace(/\./g, ''));
+    let totalHarga = 0;
 
-    let subPendekTotal = 0;
-    let subPanjangTotal = 0;
     sizes.forEach(size => {
-      let hargaPendek = parseFloat(document.getElementById(`harga_pendek_${size}`).value) || 0;
       let qtyPendek = parseFloat(document.getElementById(`qty_pendek_${size}`).value) || 0;
-      let hargaPanjang = parseFloat(document.getElementById(`harga_panjang_${size}`).value) || 0;
       let qtyPanjang = parseFloat(document.getElementById(`qty_panjang_${size}`).value) || 0;
-      let jasaSablon = parseFloat(document.getElementById('jasa_sablon').value);
-      let hargaPrint = parseFloat(document.getElementById('harga_print').value);
-      let panjangDesign = parseFloat(document.getElementById('panjang_design').value)
-      let jasaDesign = parseFloat(document.getElementById('jasa_design').value);
-      let margin = parseFloat(document.getElementById('margin').value);
-      let diskon = parseFloat(document.getElementById('diskon').value);
-
-      if (qtyPendek > 0 && qtyPanjang > 0) {
-        jasaDesign = jasaDesign/2
-      }else{
-        jasaDesign = jasaDesign
-      }
       if (qtyPendek > 0) {
-        let subtotalPendek = (hargaPendek * qtyPendek) + (jasaSablon * qtyPendek) + ((hargaPrint * panjangDesign/100)*qtyPendek) + jasaDesign;
-        let totalPendekDiskon = subtotalPendek - (subtotalPendek * (diskon / 100));
-        // Hitung Harga Jual
-        let hargaJualPendek = totalPendekDiskon / (100 - margin) * 100;
-        hargaJualPendek = roundToNearestThousand(hargaJualPendek);
-        let subPendek = ((hargaJualPendek/qtyPendek)*qtyPendek);
-        subPendekTotal += subPendek;
+        let hargaPendek = hitungHargaJual(hitungHPP("pendek", size));
+        let subPendek = hargaPendek * qtyPendek;
+        totalHarga += subPendek;
         tbody.innerHTML += `
           <tr>
             <td class="border p-2">Kaos Lengan Pendek Size ${size}</td>
             <td class="border p-2 text-center">${qtyPendek}</td>
-            <td class="border p-2 text-right">Rp. ${formatRupiah(hargaJualPendek/qtyPendek)}</td>
+            <td class="border p-2 text-right">Rp. ${formatRupiah(hargaPendek)}</td>
             <td class="border p-2 text-right">Rp. ${formatRupiah(subPendek)}</td>
           </tr>
         `;
       }
-
       if (qtyPanjang > 0) {
-        let subtotalPanjang = hargaPanjang * qtyPanjang + (jasaSablon * qtyPanjang) + ((hargaPrint * panjangDesign/100)*qtyPanjang)+jasaDesign;
-        let totalPanjangDiskon = subtotalPanjang - (subtotalPanjang * (diskon / 100));
-        // Hitung Harga Jual
-        let hargaJualPanjang = totalPanjangDiskon / (100 - margin) * 100;
-        hargaJualPanjang = roundToNearestThousand(hargaJualPanjang);
-        let subPanjang = ((hargaJualPanjang/qtyPanjang)*qtyPanjang);
-        subPanjangTotal += subPanjang;
+        let hargaPanjang = hitungHargaJual(hitungHPP("panjang", size));
+        let subPanjang = hargaPanjang * qtyPanjang;
+        totalHarga += subPanjang;
         tbody.innerHTML += `
           <tr>
             <td class="border p-2">Kaos Lengan Panjang Size ${size}</td>
             <td class="border p-2 text-center">${qtyPanjang}</td>
-            <td class="border p-2 text-right">Rp. ${formatRupiah(hargaJualPanjang/qtyPanjang)}</td>
+            <td class="border p-2 text-right">Rp. ${formatRupiah(hargaPanjang)}</td>
             <td class="border p-2 text-right">Rp. ${formatRupiah(subPanjang)}</td>
           </tr>
         `;
       }
     });
 
-    document.getElementById("total_harga").textContent = formatRupiah(subPendekTotal+subPanjangTotal);
+    document.getElementById("total_harga").textContent = formatRupiah(totalHarga);
     document.getElementById("calculator").classList.add("hidden");
     document.getElementById("invoice").classList.remove("hidden");
   }
