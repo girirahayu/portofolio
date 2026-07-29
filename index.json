@@ -1,23 +1,22 @@
 {
-	"profile": {
-		"name":"Giri Rahayu",
-		"email":"info@girirahayu.id",
-		"linkedin":"https://goo.gl/JGmu4J"
-	},
-	"skill": [
-	    "Cloud Architecture",
-	    "DevOps",
-	    "Linux",
-		"Software Engineering",
-	    "Problem Solving"
-	]
-	"experience": {
-		"clue": "More than 17 years working in technology company",
-		"role": "Cloud & DevOps Specialist",
-		"present company" : "Xapiens Teknologi Indonesia"
-	},
-	"gpg":{
-		"public_key": "https://raw.githubusercontent.com/girirahayu/portofolio/master/public-gpg.key"
-	}
-	
+  "profile": {
+    "name": "Giri Rahayu",
+    "email": "info@girirahayu.id",
+    "linkedin": "https://linkedin.com/in/girirahayu"
+  },
+  "skill": [
+    "Solution Architecture",
+    "Cloud Architecture",
+    "DevOps",
+    "Linux",
+    "Problem Solving"
+  ],
+  "experience": {
+    "summary": "17+ years of experience delivering enterprise software, cloud, and infrastructure solutions.",
+    "role": "Solution Architect",
+    "current_company": "Xapiens Teknologi Indonesia"
+  },
+  "gpg": {
+    "public_key": "https://raw.githubusercontent.com/girirahayu/portofolio/master/public-gpg.key"
+  }
 }
