@@ -5,11 +5,12 @@
 		"linkedin":"https://goo.gl/JGmu4J"
 	},
 	"skill": [
-		    "Logic",
-		    "Programming",
-		    "Networking",
-		    "OSS"
-		],
+	    "Cloud Architecture",
+	    "DevOps",
+	    "Linux",
+		"Software Engineering",
+	    "Problem Solving"
+	]
 	"experience": {
 		"clue": "More than 17 years working in technology company",
 		"role": "Cloud & DevOps Specialist",
